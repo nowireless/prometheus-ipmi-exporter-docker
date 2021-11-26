@@ -7,9 +7,11 @@ FROM golang:1.17-bullseye as builder
 WORKDIR /build
 
 # IPMI Exporter
+ARG TAG_OR_COMMIT=b806738
 RUN set -ex \
     && git clone https://github.com/prometheus-community/ipmi_exporter.git \
     && cd ipmi_exporter/ \
+    && git checkout $TAG_OR_COMMIT \
     && make
 
 #
